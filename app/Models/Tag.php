@@ -10,7 +10,7 @@ class Tag extends Model
     use HasFactory;
 
     // n:n Post >> Una Etiqueta puede tener o "Pertenece a" muchos Post con la funcion taggable (son los campos que llevan esa palabra clave)
-    public function tags(){
+    public function posts(){
     	// Esto es un belongsToMany "polimorfico", esta es la tabla madre y solo funciona para n:n
         return $this->morphedByMany(Post::class, 'taggable');
     }
