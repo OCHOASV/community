@@ -17,7 +17,14 @@ class ImageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'url' => $faker->imageUrl(1024, 1024)
         ];
+
+        /* No usado pues vamos a poner imagenes personalizadas de internet.
+        $factory->state(Image::class,'imageProfile', function (Faker $faker){
+            return [
+                'url' => $faker->imageUrl(90, 90)
+            ];
+        });*/
     }
 }
