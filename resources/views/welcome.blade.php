@@ -35,9 +35,11 @@
                     Eloquent : Relaciones
                 </div>
                 <br><br>
-                <div class="links">
+                <div class="">
                     @foreach ($users as $user)
-                        <a href="#">{{ $user->name }}</a>
+                        <a href="{{ route('profile', $user->id) }}">
+                            {{ $user->name }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
                     @endforeach
                 </div>
             </div>

@@ -26,7 +26,7 @@ class Video extends Model
     }
 
     // 1:1 Image >> Un Video tiene una Imagen con la funcion imageable (son los campos que llevan esa palabra clave)
-    public function comments(){
+    public function image(){
     	// Esto es un hasOne "polimorfico"
         return $this->morphOne(Image::class, 'imageable');
     }

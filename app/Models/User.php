@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     // n:n Group >> Un Usuario pertenece y tiene muchos Grupos
     public function groups(){
-        return $this->belongsToMany(Group::class)->withTimestamps();
+        return $this->belongsToMany(Group::class);
     }
 
     // 1:1 Location >> Un Usuario tiene una Localizacion o Pais a través de o por medio de un Perfil

@@ -21,8 +21,6 @@ return new class extends Migration
             /* Este metodo creara 2 campos, el id del usuario y la entidad, evitamos crearlo nosotros mismos en la tabla */
             $table->morphs('taggable');
 
-            $table->timestamps();
-
             $table->foreign('tag_id')->references('id')->on('tags')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
