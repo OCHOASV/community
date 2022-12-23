@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
 
                 // Imagen de Perfil personalizada de 90x90 px
                 $user->image()->save(Image::factory()->make([
-                    'url' => 'https://placeimg.com/90/90/any'
+                    'url' => 'https://placeimg.com/90/90/people'
                 ]));
 
                 /* No usado pues vamos a poner imagenes personalizadas de internet.

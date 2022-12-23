@@ -15,6 +15,16 @@ class UserController extends Controller
     public function show($id){
     	$user = User::find($id);
     	// dd($user->name);
-    	return view('profile', compact('user'));
+
+    	// Recuperamos los posts y cuantos comentarios tienen
+    	$posts = $user->posts()
+    		// Quiero que me traiga la categoría, imagen y las etiquetas para no hacer la query en la vista
+    		->with('category', 'image', 'tags')
+    		->withCount('comments')->get();
+    	$videos = $user->videos()
+    		->with('category', 'image', 'tags')
+    		->withCount('comments')->get();
+
+    	return view('profile', compact('user', 'posts', 'videos'));
     }
 }

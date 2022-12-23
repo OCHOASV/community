@@ -28,13 +28,13 @@
                 <p>
                     <strong>Instagram</strong>: {{ $user->profile->instagram }} <br>
                     <strong>GitHub</strong>: {{ $user->profile->github }} <br>
-                    <strong>Web</strong>: <a href="{{ route('home') }}">{{ $user->profile->web }}</a>
+                    <strong>Web</strong>: <a href="{{ route('home') }}" class="text-decoration-none">{{ $user->profile->web }}</a>
                 </p>
                 <p>
                     <strong>País</strong>: {{ $user->location->country }} <br>
                     <strong>Nivel</strong>:
                         @if ($user->level)
-                            <a href="#">{{ $user->level->name }}</a>
+                            <a href="#" class="text-decoration-none">{{ $user->level->name }}</a>
                         @else
                             <em>No Level</em>
                         @endif
@@ -51,6 +51,72 @@
                     @endforelse
                 </p>
                 <hr>
+                <h3>Posts</h3>
+                <div class="row">
+                    @foreach($posts as $post)
+                        <div class="col-6">
+                            <div class="card mb-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="{{ $post->image->url }}" class="card-img" alt="Image Post" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h5 class="card-title">
+                                            {{ $post->image->name }}
+                                        </h5>
+                                        <h6 class="card-subtitle text-muted">
+                                            {{ $post->category->name }} |
+                                            {{ $post->comments_count }}
+                                            {{-- Si solo tiene un valor, en singular --}}
+                                            {{ Str::plural('comentario', $post->comments_count) }}
+                                        </h6>
+                                        <p class="card-text small">
+                                            @foreach($post->tags as $tag)
+                                                <span class="badge bg-secondary">
+                                                    #{{ $tag->name }}
+                                                </span>
+                                            @endforeach
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <hr>
+                <h3>Videos</h3>
+                <div class="row">
+                    @foreach($videos as $video)
+                        <div class="col-6">
+                            <div class="card mb-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="{{ $video->image->url }}" class="card-img" alt="Image Video" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h5 class="card-title">
+                                            {{ $video->image->name }}
+                                        </h5>
+                                        <h6 class="card-subtitle text-muted">
+                                            {{ $video->category->name }} |
+                                            {{ $video->comments_count }}
+                                            {{-- Si solo tiene un valor, en singular --}}
+                                            {{ Str::plural('comentario', $video->comments_count) }}
+                                        </h6>
+                                        <p class="card-text small">
+                                            @foreach($video->tags as $tag)
+                                                <span class="badge bg-secondary">
+                                                    #{{ $tag->name }}
+                                                </span>
+                                            @endforeach
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
