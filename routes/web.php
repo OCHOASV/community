@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
-Route::get('/', [UserController::class, 'welcome']);
+Route::get('/', [UserController::class, 'welcome'])->name('home');;
 
 Route::get('/profile/{id}', [UserController::class, 'show'])->name('profile');

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Level;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,7 +50,7 @@ class User extends Authenticatable
 
     // 1:n Level >> Un Usuario pertenece a un Nivel
     public function level(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Level::class);
     }
 
     // n:n Group >> Un Usuario pertenece y tiene muchos Grupos
