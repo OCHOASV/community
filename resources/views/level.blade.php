@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ $user->name }}</title>
+    <title>Nivel {{ $level->name }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,38 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 my-3 mt-3 shadow">
-                <img src="{{ $user->image->url }}" class="float-start rounded-circle mr-2 mt-2" alt="User Image Profile" />
-                <h1>{{ $user->name }}</h1>
-                <h3>{{ $user->email }}</h3>
-                <p>
-                    <strong>Instagram</strong>: {{ $user->profile->instagram }} <br>
-                    <strong>GitHub</strong>: {{ $user->profile->github }} <br>
-                    <strong>Web</strong>: <a href="{{ route('home') }}" class="text-decoration-none">{{ $user->profile->web }}</a>
-                </p>
-                <p>
-                    <strong>País</strong>: {{ $user->location->country }} <br>
-                    <strong>Nivel</strong>:
-                        @if ($user->level)
-                            <a href="{{ route('level', $user->level->id) }}" class="text-decoration-none">
-                                {{ $user->level->name }}
-                            </a>
-                        @else
-                            <em>No Level</em>
-                        @endif
-                </p>
-                <hr>
-                <p>
-                    <strong>Grupos</strong>:
-                    @forelse($user->groups as $group)
-                        <span class="badge bg-dark">
-                            {{ $group->name }}
-                        </span>
-                    @empty
-                        <em>No Group</em>
-                    @endforelse
-                </p>
-                <hr>
-                <h3>Posts</h3>
+                <h3>{{ $totals['posts'] }} Posts del Nivel {{ $level->name }} </h3>
                 <div class="row">
                     @foreach($posts as $post)
                         <div class="col-6">
@@ -68,6 +37,7 @@
                                                 {{ $post->image->name }}
                                             </h5>
                                             <h6 class="card-subtitle text-muted">
+                                                {{ $post->user->name }} <br>
                                                 {{ $post->category->name }} |
                                                 {{ $post->comments_count }}
                                                 {{-- Si solo tiene un valor, en singular --}}
@@ -89,7 +59,7 @@
                 </div>
 
                 <hr>
-                <h3>Videos</h3>
+                <h3>{{ $totals['videos'] }} Videos de Nivel {{ $level->name }}</h3>
                 <div class="row g-0">
                     @foreach($videos as $video)
                         <div class="col-6">
@@ -104,6 +74,7 @@
                                                 {{ $video->image->name }}
                                             </h5>
                                             <h6 class="card-subtitle text-muted">
+                                                {{ $video->user->name }} <br>
                                                 {{ $video->category->name }} |
                                                 {{ $video->comments_count }}
                                                 {{-- Si solo tiene un valor, en singular --}}

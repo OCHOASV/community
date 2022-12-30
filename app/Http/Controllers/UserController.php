@@ -20,7 +20,7 @@ class UserController extends Controller
     	$posts = $user->posts()
     		// Quiero que me traiga la categoría, imagen y las etiquetas para no hacer la query en la vista
     		->with('category', 'image', 'tags')
-    		->withCount('comments')->get();
+    		->withCount(['comments'])->get();
     	$videos = $user->videos()
     		->with('category', 'image', 'tags')
     		->withCount('comments')->get();
